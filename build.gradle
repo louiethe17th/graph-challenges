@@ -2,7 +2,20 @@ plugins {
     id 'java'
 }
 
+
 group 'graphs'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+group 'graph-challenges'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
