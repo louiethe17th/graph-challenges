@@ -327,7 +327,16 @@ public class AdjacencyListGraphTest {
         assertEquals(2, numIslands(usa));
     }
 
-    public int numIslands(Graph graph) {
+    public int numIslands(Graph<String> graph) {
+        int islands = 0;
+
+        for(Node<String> node : graph.getNodes()){
+            if(graph.getNeighbors(node).isEmpty()){
+                islands++;
+            }
+        }
+
+        return islands;
 
     }
 }
