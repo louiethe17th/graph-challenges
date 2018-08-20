@@ -290,6 +290,21 @@ public class AdjacencyListGraphTest {
     }
 
     public int tripCost(Graph graph, List<Node<String>> itinerary) {
+        int cost = 0;
+
+        for(int i = 0; i < itinerary.size(); i++){
+            Node current = itinerary.get(i);
+            Node next = itinerary.get(i + 1);
+
+            if(graph.isConnected(current, next)){
+                Edge edge = graph.getEdge(current, next);
+                cost += edge.getCost();
+            } else{
+                return 0;
+            }
+        }
+
+        return cost;
     }
 
     @Test
@@ -312,6 +327,17 @@ public class AdjacencyListGraphTest {
         assertEquals(2, numIslands(usa));
     }
 
-    public int numIslands(Graph graph) {
+    public int numIslands(Graph<String> graph) {
+        int islands = 0;
+
+        for(Node<String> node : graph.getNodes()){
+            if(graph.getNeighbors(node).isEmpty()){
+                islands++;
+            }
+        }
+
+        return islands;
+
     }
 }
+
