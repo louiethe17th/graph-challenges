@@ -242,8 +242,28 @@ public class AdjacencyListGraphTest {
     }
 
     public List<Node<String>> breadthFirstTraversal(Graph<String> graph, Node<String> start) {
+        List<Node<String>> traversal = new ArrayList<>();
+        Queue<Node<String>> qq = new LinkedList<>();
+        Set<Node<String>> isEnqueued = new HashSet<>();
 
+        qq.add(start);
+        isEnqueued.add(start);
+
+        while (!qq.isEmpty()) {
+            Node<String> current = qq.poll();
+            traversal.add(current);
+            System.out.println("currently in : " + current);
+
+            for (Node<String> neighbor : graph.getNeighbors(current)) {
+                if (!isEnqueued.contains(neighbor)) {
+                    qq.add(neighbor);
+                    isEnqueued.add(neighbor);
+                }
+            }
+        }
+        return traversal;
     }
+
 
     @Test
     public void possibleDirectBusinessTrip() {
